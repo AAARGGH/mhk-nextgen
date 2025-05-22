@@ -1,0 +1,581 @@
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  --primary: #22bfae;
+  --primary-light: #eafaf8;
+  --text: #222;
+  --bg: #fff;
+  --radius: 2em;
+  --transition: .3s cubic-bezier(.4,0,.2,1);
+  --h-spacing: 5vw;
+  --section-gap: 5em;
+}
+
+body {
+  font-family: 'Lora', serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  padding: 0;
+  line-height: 1.7;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  margin-top: 0;
+  color: var(--text);
+}
+
+h1 { font-size: 3em; margin-bottom: 0.7em; }
+h2 { font-size: 2em; margin-bottom: 0.5em; }
+
+header {
+  position: sticky;
+  top: 0;
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: blur(4px);
+  z-index: 100;
+  box-shadow: 0 3px 16px 0 rgba(34,191,174,0.07);
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 1.3em var(--h-spacing) 1.1em var(--h-spacing);
+}
+
+nav .logo-img {
+  height: 64px;
+  vertical-align: middle;
+  margin-right: 1em;
+}
+
+nav .logo {
+  display: flex;
+  align-items: center;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 1.3em;
+  letter-spacing: .06em;
+  color: var(--primary);
+  text-decoration: none;
+  font-variant: small-caps;
+}
+
+nav ul {
+  display: flex;
+  gap: 2.4em;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li a {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 700;
+  font-family: 'Montserrat', sans-serif;
+  transition: color var(--transition);
+  border-bottom: 2px solid transparent;
+  padding-bottom: .18em;
+  font-size: 1.04em;
+  letter-spacing: 0.01em;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+  color: var(--primary);
+  border-bottom: 2px solid var(--primary);
+}
+
+main {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 var(--h-spacing) 6em var(--h-spacing);
+}
+
+section {
+  margin: var(--section-gap) 0;
+  padding: 0;
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  padding: 1em 0 2.5em 0;
+  position: relative;
+}
+
+.hero .logo-img-main {
+  width: 440px;
+  margin-bottom: 1.2em;
+}
+
+.hero h1 {
+  font-size: 2.5em;
+  font-weight: 800;
+  margin-bottom: 1.2em;
+  line-height: 1.1;
+  color: var(--text);
+}
+
+.hero .claim {
+  font-family: 'Lora', serif;
+  font-size: 1.23em;
+  margin-bottom: 2em;
+  color: #555;
+  max-width: 550px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero .hero-image {
+  width: 370px;
+  max-width: 92vw;
+  margin: 1em auto 2.3em auto;
+  display: block;
+  border-radius: 1.5em;
+  box-shadow: 0 4px 32px 0 rgba(34,191,174,0.13);
+  object-fit: cover;
+}
+
+/* About Section */
+.about {
+  text-align: center;
+  max-width: 860px;
+  margin: 0 auto 2em auto;
+  font-size: 1.13em;
+  color: #444;
+  font-family: 'Lora', serif;
+}
+
+.about-icons {
+  display: flex;
+  gap: 2.2em;
+  justify-content: center;
+  font-size: 2.2em;
+  margin-top: 1.2em;
+  color: var(--primary);
+}
+
+.about .founded {
+  font-size:0.97em;
+  color:#888;
+  margin-top:2em;
+  font-family:'Montserrat',sans-serif;
+}
+
+/* Förderfelder Cards */
+.fields-section h2 {
+  text-align:center;
+  font-family:'Montserrat',sans-serif;
+  font-size:2em;
+  margin-bottom:2em;
+  font-weight:800;
+  color: var(--text);
+}
+
+.fields-list {
+  display: flex;
+  gap: 2em;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.field-card {
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: 0 6px 32px 0 rgba(34,191,174,0.13);
+  min-width: 250px;
+  max-width: 320px;
+  flex: 1 1 250px;
+  padding: 2em 1.2em 1.5em 1.2em;
+  text-align: center;
+  transition: transform var(--transition), box-shadow var(--transition);
+  cursor: pointer;
+  margin-bottom: 1.5em;
+  border: 1px solid #f4f4f4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.field-card:hover {
+  transform: translateY(-7px) scale(1.045);
+  box-shadow: 0 16px 38px 0 rgba(34,191,174,0.18);
+  border: 1px solid var(--primary-light);
+}
+
+.field-icon {
+  width: 44px;
+  height: 44px;
+  margin-bottom: .6em;
+  display: block;
+}
+
+.field-title {
+  font-family:'Montserrat',sans-serif;
+  font-weight:700;
+  font-size:1.13em;
+  margin-bottom:.5em;
+  color: var(--text);
+}
+
+.field-short {
+  font-family:'Lora',serif;
+  font-size:1em;
+  color:#444;
+}
+
+/* Team & Beirat */
+.team-section, .beirat-section {
+  margin-top: 2em;
+  text-align: center;
+}
+
+.team-section h2, .beirat-section h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2em;
+  font-weight: 800;
+  margin-bottom: 1.1em;
+  color: var(--text);
+  text-align: center;
+}
+
+.team-list, .beirat-list {
+  display: flex;
+  gap: 2em;
+  overflow-x: auto;
+  padding-bottom: 2em;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  justify-content: center;
+}
+
+.team-card, .beirat-card {
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: 0 6px 32px 0 rgba(34,191,174,0.13);
+  min-width: 230px;
+  flex: 0 0 230px;
+  padding: 2em 1.2em 1.3em 1.2em;
+  text-align: center;
+  scroll-snap-align: start;
+  transition: transform var(--transition), box-shadow var(--transition);
+  cursor: pointer;
+  margin-bottom: 1em;
+}
+
+.team-card:hover, .beirat-card:hover {
+  transform: translateY(-7px) scale(1.045);
+  box-shadow: 0 16px 38px 0 rgba(34,191,174,0.22);
+}
+
+.team-card img, .beirat-card img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1.1em;
+  background: var(--primary-light);
+  border: 5px solid var(--primary-light);
+  box-shadow: 0 2px 6px 0 rgba(34,191,174,0.11);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.team-card .name, .beirat-card .name {
+  font-weight: 700;
+  font-size: 1.13em;
+  margin-bottom: .18em;
+  font-family: 'Montserrat', sans-serif;
+  color: var(--text);
+}
+
+.team-card .role, .beirat-card .role {
+  font-size: 1em;
+  color: #888;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* MODAL für Förderfelder, Team, Beirat */
+.modal-bg {
+  position: fixed;
+  inset: 0;
+  background: rgba(34, 191, 174, 0.13);
+  display: none;
+  z-index: 2000;
+  transition: background .33s cubic-bezier(.4,0,.2,1);
+  align-items: center;
+  justify-content: center;
+  animation: fadeInBg .33s;
+}
+
+@keyframes fadeInBg {
+  from { background: rgba(34, 191, 174, 0.01);}
+  to   { background: rgba(34, 191, 174, 0.13);}
+}
+
+.modal-bg.active {
+  display: flex;
+}
+
+.modal-card {
+  background: #fff;
+  border-radius: 2em;
+  max-width: 420px;
+  min-width: 0;
+  width: 90vw;
+  padding: 2.5em 2em 2em 2em;
+  box-shadow: 0 24px 54px 0 rgba(34,191,174,0.22);
+  text-align: center;
+  position: relative;
+  transform: scale(0.92) translateY(32px);
+  opacity: 0;
+  animation: popInModal .4s cubic-bezier(.47,1.64,.41,.8) forwards;
+}
+
+@keyframes popInModal {
+  from {transform: scale(0.92) translateY(32px); opacity:0;}
+  to   {transform: scale(1) translateY(0); opacity:1;}
+}
+
+.modal-card .field-icon {
+  width: 56px;
+  height: 56px;
+  margin-bottom: .7em;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.modal-card .name {
+  font-family:'Montserrat',sans-serif;
+  font-size:1.22em;
+  font-weight:700;
+  margin-bottom:.23em;
+}
+
+.modal-card .bio {
+  font-family:'Lora',serif;
+  font-size:1.07em;
+  color:#444;
+  margin-bottom:2em;
+}
+
+.modal-card img {
+  width: 116px;
+  height: 116px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1.3em;
+  background: var(--primary-light);
+  border: 6px solid var(--primary-light);
+  box-shadow: 0 2px 10px 0 rgba(34,191,174,0.13);
+}
+
+.modal-close {
+  position: absolute;
+  top: 1.3em;
+  right: 1.3em;
+  background: #eee;
+  color: #666;
+  border: none;
+  font-size: 1.3em;
+  padding: .33em .7em;
+  border-radius: 100em;
+  cursor: pointer;
+  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.03);
+  transition: background .2s;
+}
+
+.modal-close:hover {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* Spenden Section */
+.donate-section {
+  margin-top: 3.5em;
+  text-align: center;
+}
+
+.donate-section h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2em;
+  font-weight: 800;
+  margin-bottom: 1.2em;
+  color: var(--text);
+}
+
+.donate-flex {
+  display: flex;
+  gap: 3em;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.konto-card {
+  background: #f7fafa;
+  border-radius: var(--radius);
+  box-shadow: 0 3px 16px 0 rgba(34,191,174,0.09);
+  padding: 2.3em 2.2em;
+  min-width: 260px;
+  font-size: 1.13em;
+  margin: 0.8em 0;
+  letter-spacing: 0.01em;
+  font-family:'Lora',serif;
+}
+
+/* Hilfe Section */
+.help-section {
+  text-align: center;
+  margin-top: 5em;
+}
+
+.help-section p {
+  margin-bottom: 3em;
+}
+
+.help-section h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2em;
+  font-weight: 800;
+  margin-bottom: .6em;
+  color: var(--text);
+}
+
+.help-section .cta-btn {
+  margin-top: 1.5em;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 1.1em 2.4em;
+  font-size: 1.13em;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background var(--transition), transform var(--transition);
+  box-shadow: 0 6px 32px 0 rgba(34,191,174,0.11);
+  letter-spacing: 0.01em;
+}
+
+.help-section .cta-btn:hover {
+  background: #189d8c;
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 12px 32px 0 rgba(34,191,174,0.16);
+}
+
+/* Projekte Section */
+.projects-section {
+  text-align: center;
+}
+
+.projects-section h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2em;
+  font-weight: 800;
+  margin-bottom: 1.4em;
+  color: var(--text);
+  text-align: center;
+}
+
+.projects-list {
+  display: flex;
+  gap: 2em;
+  overflow-x: auto;
+  padding-bottom: 2em;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  justify-content: center;
+}
+
+.project-card {
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: 0 6px 32px 0 rgba(34,191,174,0.13);
+  min-width: 230px;
+  flex: 0 0 230px;
+  padding: 1.7em 1.1em;
+  scroll-snap-align: start;
+  transition: transform var(--transition), box-shadow var(--transition);
+  margin-bottom: 1em;
+  text-align: center;
+}
+
+.project-card:hover {
+  transform: translateY(-7px) scale(1.045);
+  box-shadow: 0 16px 38px 0 rgba(34,191,174,0.22);
+}
+
+.project-card img {
+  width: 100%;
+  height: 110px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  margin-bottom: 1em;
+  background: var(--primary-light);
+}
+
+.project-card .project-title {
+  font-weight: 700;
+  margin-bottom: .23em;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.1em;
+}
+
+.project-card .project-desc {
+  color: #555;
+  font-size: 1em;
+  font-family:'Lora',serif;
+}
+
+/* Footer */
+footer {
+  background: #f6f8f9;
+  color: #888;
+  text-align: center;
+  padding: 3em 1em;
+  font-size: 1.01em;
+  border-radius: var(--radius) var(--radius) 0 0;
+  margin-top: 6em;
+  letter-spacing: 0.01em;
+  font-family: 'Lora', serif;
+}
+
+/* Responsive Design */
+@media (max-width: 950px) {
+  main { padding: 0 1em 6em 1em; }
+  nav { padding: 1.2em 1em 0.8em 1em; }
+  .hero { padding: 3.6em 0 2.8em 0; }
+  h1 { font-size: 2em; }
+  .fields-list, .team-list, .projects-list, .beirat-list { gap: 1em; }
+  .field-card, .team-card, .project-card, .beirat-card { min-width: 94vw; max-width: 97vw; }
+}
+
+@media (max-width: 570px) {
+  h1 { font-size: 1.3em; }
+  h2 { font-size: 1.03em; }
+  .field-card, .team-card, .project-card, .beirat-card { padding: 1.3em 0.5em; }
+  .modal-card { padding: 2em 0.5em; }
+  .field-card, .team-card, .project-card, .beirat-card { min-width: 98vw; }
+  .hero .logo-img-main { width: 68px; }
+  .hero .hero-image { width: 96vw; }
+}
+
+
+.modal-card .field-icon img {
+  max-width: 64px;
+  max-height: 64px;
+  object-fit: contain;
+  margin: 0 auto 1em auto;
+  display: block;
+}

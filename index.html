@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MHK Next Generation Stiftung</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:700,800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lora:400,700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <nav>
+      <a class="logo" href="#">
+        <img src="images/logo.png" alt="Logo" class="logo-img">
+      </a>
+      <ul>
+        <li><a href="#about">Über uns</a></li>
+        <li><a href="#fields">Förderfelder</a></li>
+        <li><a href="#team">Vorstand</a></li>
+        <li><a href="#beirat">Beirat</a></li>
+        <li><a href="#donate">Spenden</a></li>
+        <li><a href="#help">Hilfe</a></li>
+        <li><a href="#projects">Projekte</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section class="hero">
+      <img src="images/logo.png" alt="Logo MHK Next Generation Stiftung" class="logo-img-main">
+      <h1>Wir wollen helfen<br>Kindern – Tieren – Menschen in Not</h1>
+      <div class="claim">
+        Gemeinsam engagieren wir uns für eine bessere Zukunft für Kinder, Tiere und alle, die Hilfe brauchen.
+      </div>
+      <img src="images/hero-image.png" alt="Kind mit Pony" class="hero-image">
+    </section>
+    <section class="about" id="about">
+      <h2>Über uns</h2>
+      <div>
+        Zweck der Stiftung ist die Förderung von Kindern und Jugendlichen (§ 52 Abs. 2 S. 1 Nr. 4 AO), die Förderung des Tierschutzes (§ 52 Abs. 2 S. 1 Nr. 14 AO) sowie die Förderung des bürgerschaftlichen Engagements zugunsten gemeinnütziger und mildtätiger Zwecke (§ 52 Abs. 2 Nr. 25 AO).
+      </div>
+      <div class="about-icons" style="margin-top:2.5em;">
+        <span>
+          <img src="images/boy.png" alt="Kinder & Jugendliche" width="48" height="48" loading="lazy">
+        </span>
+        <span>
+          <img src="images/paws.png" alt="Tierschutz" width="48" height="48" loading="lazy">
+        </span>
+        <span>
+          <img src="images/handshake.png" alt="Bürgerschaftliches Engagement" width="48" height="48" loading="lazy">
+        </span>
+      </div>
+      <div class="founded">Gegründet 2025</div>
+    </section>
+    <section class="fields-section" id="fields">
+      <h2>Unsere Förderfelder</h2>
+      <div class="fields-list">
+        <div class="field-card" data-title="Förderung von Kindern & Jugendlichen"
+          data-icon='<img src="images/boy.png" alt="Kinder & Jugendliche" width="48" height="48">'
+          data-desc="Wir unterstützen soziale Einrichtungen, Projekte und Initiativen, die Kindern und Jugendlichen neue Chancen eröffnen – von der Versorgung in Heimen und Krankenhäusern bis zu Programmen für Sozialkompetenz, Musik, Sport oder Kreativität. Auch gezielte Hilfe für behinderte Kinder und Jugendliche gehört dazu, etwa durch spezielle Hilfsmittel oder fördernde Aktivitäten.">
+          <span class="field-icon">
+            <img src="images/boy.png" alt="Kinder & Jugendliche" width="48" height="48" loading="lazy">
+          </span>
+          <div class="field-title">Förderung von Kindern & Jugendlichen</div>
+          <div class="field-short">
+            Neue Chancen für Kinder und Jugendliche: Wir fördern soziale Einrichtungen, kreative und sportliche Angebote und leisten gezielte Hilfe bei besonderem Bedarf.
+          </div>
+        </div>
+        <div class="field-card" data-title="Tierschutz"
+          data-icon='<img src="images/paws.png" alt="Tierschutz" width="48" height="48">'
+          data-desc="Wir helfen dort, wo Tiere Schutz und Pflege brauchen: durch Unterstützung von Tierheimen, Gnadenhöfen und Vereinen, die sich für das Wohl von Haustieren und anderen Tieren engagieren – ganz gleich, ob es um Unterkunft, medizinische Versorgung oder liebevolle Betreuung geht.">
+          <span class="field-icon">
+            <img src="images/paws.png" alt="Tierschutz" width="48" height="48" loading="lazy">
+          </span>
+          <div class="field-title">Tierschutz</div>
+          <div class="field-short">
+            Wir unterstützen Tierheime, Gnadenhöfe und Vereine – für mehr Schutz, Gesundheit und Fürsorge für Tiere in Not.
+          </div>
+        </div>
+        <div class="field-card" data-title="Bürgerschaftliches Engagement"
+          data-icon='<img src="images/handshake.png" alt="Bürgerschaftliches Engagement" width="48" height="48">'
+          data-desc="Wir fördern regionale Hilfe für Menschen und Familien, die durch Krankheit, Unfall, Brand oder Naturereignisse unverschuldet in Not geraten sind. Ziel ist, schnell und unbürokratisch das Lebensnotwendige bereitzustellen – von Kleidung und Haushaltsgegenständen bis zu Wohnmobiliar.">
+          <span class="field-icon">
+            <img src="images/handshake.png" alt="Bürgerschaftliches Engagement" width="48" height="48" loading="lazy">
+          </span>
+          <div class="field-title">Bürgerschaftliches Engagement</div>
+          <div class="field-short">
+            Für Menschen in der Region, die unverschuldet in Not geraten sind, machen wir schnelle Hilfe möglich – gezielt, menschlich und direkt.
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Popup Modal für Förderfelder -->
+    <div class="modal-bg" id="field-modal-bg" tabindex="-1" aria-modal="true" role="dialog">
+      <div class="modal-card" id="field-modal-card">
+        <button class="modal-close" id="field-modal-close" aria-label="Schließen">&times;</button>
+        <div class="field-icon" id="field-modal-icon"></div>
+        <div class="name" id="field-modal-title"></div>
+        <div class="bio" id="field-modal-desc"></div>
+      </div>
+    </div>
+    <!-- Vorstand -->
+    <section class="team-section" id="team">
+      <h2>Team</h2>
+      <div class="team-list">
+        <div class="team-card" data-name="Heinz Kirmse" data-role="Vorstandsvorsitzender" data-img="https://unsplash.it/150/150?image=1027" data-bio="Heinz Kirmse, Jahrgang 1960, verheiratet, lebt mit Hund und Katze. Er ist sportbegeistert, engagiert sich seit Jahren im Hundeverein und ist dort auch als Hundesport-Trainer aktiv. Sein Herz schlägt für das Vereinsleben, die Nachwuchsförderung und den Tierschutz.">
+          <img src="https://unsplash.it/150/150?image=1027" alt="Heinz Kirmse">
+          <div class="name">Heinz Kirmse</div>
+          <div class="role">Vorstandsvorsitzender</div>
+        </div>
+        <div class="team-card" data-name="Ralf Holtorf" data-role="Stellv. Vorsitzender" data-img="https://unsplash.it/150/150?image=1021" data-bio="Ralf Holtorf, Jahrgang 1981, verheiratet, Vater von zwei Kindern und Halter von zwei Hunden. Er engagiert sich sozial, insbesondere bei den Pfadfindern, und setzt sich für Jugendförderung und tiergestützte Projekte ein.">
+          <img src="https://unsplash.it/150/150?image=1021" alt="Ralf Holtorf">
+          <div class="name">Ralf Holtorf</div>
+          <div class="role">Stellv. Vorsitzender</div>
+        </div>
+        <div class="team-card" data-name="Anna Schmidt" data-role="Vorstandsmitglied" data-img="https://unsplash.it/150/150?image=1019" data-bio="Anna Schmidt, Jahrgang 1990, verheiratet, hat einen Hund und pflegt mit Leidenschaft ältere Ponys. Sie engagiert sich für das Miteinander und ist auch als Hundesport-Trainerin aktiv.">
+          <img src="https://unsplash.it/150/150?image=1019" alt="Anna Schmidt">
+          <div class="name">Anna Schmidt</div>
+          <div class="role">Vorstandsmitglied</div>
+        </div>
+      </div>
+    </section>
+    <!-- Stiftungsbeirat -->
+    <section class="beirat-section" id="beirat">
+      <div class="beirat-list">
+        <div class="beirat-card" data-name="Marina Kirmse" data-role="Mitglied des Stiftungsbeirats" data-img="https://unsplash.it/150/150?image=1005" data-bio="Marina Kirmse, Jahrgang 1957, verheiratet, lebt mit einer Katze, einem Hund und Pferden. Sie ist Pferdeliebhaberin und begeisterte Reiterin, engagiert sich sozial u.a. in der Flüchtlingshilfe und ist aktive Hundesportlerin.">
+          <img src="https://unsplash.it/150/150?image=1005" alt="Marina Kirmse">
+          <div class="name">Marina Kirmse</div>
+          <div class="role">Mitglied des Stiftungsbeirats</div>
+        </div>
+        <div class="beirat-card" data-name="Annalena Kirmse" data-role="Mitglied des Stiftungsbeirats" data-img="https://unsplash.it/150/150?image=1002" data-bio="Annalena Kirmse, Jahrgang 2002, ist vielfach sozial engagiert, unter anderem rund um den Volleyballsport und den Gardetanz.">
+          <img src="https://unsplash.it/150/150?image=1002" alt="Annalena Kirmse">
+          <div class="name">Annalena Kirmse</div>
+          <div class="role">Mitglied des Stiftungsbeirats</div>
+        </div>
+      </div>
+    </section>
+    <!-- Modal für Team & Beirat -->
+    <div class="modal-bg" id="member-modal-bg" tabindex="-1" aria-modal="true" role="dialog">
+      <div class="modal-card" id="member-modal-card">
+        <button class="modal-close" id="member-modal-close" aria-label="Schließen">&times;</button>
+        <img id="member-modal-img" src="" alt="">
+        <div class="name" id="member-modal-name"></div>
+        <div class="role" id="member-modal-role"></div>
+        <div class="bio" id="member-modal-bio"></div>
+      </div>
+    </div>
+    <!-- Spenden Section -->
+    <section class="donate-section" id="donate">
+      <h2>Auch du kannst helfen</h2>
+      <div class="donate-flex">
+        <div class="konto-card">
+          <strong>Bankverbindung</strong><br>
+          IBAN: DE00 0000 0000 0000 0000 00<br>
+          BIC: GENODEF1XXX<br>
+          <span style="font-size:.95em;color:#666;">Spendenbescheinigungen werden selbstverständlich ausgestellt.</span>
+        </div>
+        <div>
+          Spenden und Zustiftungen willkommen – deine Unterstützung kommt direkt unserem gemeinnützigen Zweck zugute.<br>
+          <span style="color:#888;">Ob einmalig oder regelmäßig: Jeder Beitrag zählt!</span>
+        </div>
+      </div>
+    </section>
+    <!-- Hilfe Section -->
+    <section class="help-section" id="help">
+      <h2>Brauchst du unsere Hilfe?</h2>
+      <p>
+        Du kennst Menschen, Tiere oder Organisationen, die Unterstützung brauchen oder sich über unsere Hilfe freuen würden? Melde dich gerne – wir hören zu und helfen unkompliziert!
+      </p>
+      <a href="mailto:kontakt@mhk-ng-stiftung.de" class="cta-btn">Schreib uns</a>
+    </section>
+    <!-- Projekte -->
+    <section class="projects-section" id="projects">
+      <h2>Bisherige Projekte (Beispiele)</h2>
+      <div class="projects-list">
+        <div class="project-card">
+          <img src="https://unsplash.it/250/110?image=1050" alt="Projekt 1">
+          <div class="project-title">Kinderlachen fördern</div>
+          <div class="project-desc">Finanzierung von Freizeitangeboten für benachteiligte Kinder in der Region.</div>
+        </div>
+        <div class="project-card">
+          <img src="https://unsplash.it/250/110?image=1020" alt="Projekt 2">
+          <div class="project-title">Neues Leben für Tiere</div>
+          <div class="project-desc">Unterstützung eines regionalen Gnadenhofs für alte und kranke Tiere.</div>
+        </div>
+        <div class="project-card">
+          <img src="https://unsplash.it/250/110?image=1020" alt="Projekt 3">
+          <div class="project-title">Nachbarschaftshilfe</div>
+          <div class="project-desc">Direkte Hilfe für Familien nach einem Wohnungsbrand in Ingelheim.</div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    &copy; 2025 MHK Next Generation Stiftung &mdash; Gemeinsam helfen!
+  </footer>
+  <script src="js/main.js"></script>
+</body>
+</html>
