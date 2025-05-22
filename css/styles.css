@@ -576,6 +576,6 @@ footer {
   max-width: 64px;
   max-height: 64px;
   object-fit: contain;
-  margin: 0 auto 2em auto;
+  margin: 0 auto 1.3em auto;
   display: block;
 }
