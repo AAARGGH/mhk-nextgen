@@ -33,6 +33,17 @@ h1, h2, h3, h4, h5, h6 {
 h1 { font-size: 3em; margin-bottom: 0.7em; }
 h2 { font-size: 2em; margin-bottom: 0.5em; }
 
+a {
+  text-decoration: none;
+  color: var(--primary);
+  transition: color var(--transition);
+}
+
+a:hover,
+a:focus {
+  text-decoration: underline;
+}
+
 header {
   position: sticky;
   top: 0;
@@ -468,10 +479,12 @@ section {
   letter-spacing: 0.01em;
 }
 
-.help-section .cta-btn:hover {
+.help-section .cta-btn:hover,
+.help-section .cta-btn:focus {
   background: #189d8c;
   transform: translateY(-3px) scale(1.04);
   box-shadow: 0 12px 32px 0 rgba(34,191,174,0.16);
+  text-decoration: none;
 }
 
 /* Projekte Section */
