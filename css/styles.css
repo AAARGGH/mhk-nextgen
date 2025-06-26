@@ -291,6 +291,11 @@ section {
   justify-content: center;
 }
 
+/* Scroll hint arrow hidden by default */
+.scroll-hint {
+  display: none;
+}
+
 .team-card, .beirat-card {
   background: #fff;
   border-radius: var(--radius);
@@ -617,13 +622,25 @@ footer {
   h2 { font-size: 1.03em; }
   .field-card, .team-card, .project-card, .beirat-card { padding: 1.3em 0.5em; }
   .modal-card { padding: 2em 0.5em; margin: auto; }
-  .field-card, .team-card, .project-card, .beirat-card { min-width: 98vw; }
+  .field-card, .project-card { min-width: 98vw; }
+  .team-card, .beirat-card {
+    min-width: 85vw;
+    flex: 0 0 85vw;
+  }
   .hero .logo-img-main { width: 160px; }
   .hero .hero-image { width: 96vw; }
   header { position: fixed; width: 100%; top: 0; left: 0; }
   body { padding-top: 90px; }
   .team-list, .beirat-list { justify-content: flex-start; }
-  .scroll-hint { display: block; font-size: 1.5em; text-align: center; color: var(--primary); opacity: .7; animation: hintMove 2s infinite; }
+  .scroll-hint {
+    display: block;
+    font-size: 2.3em;
+    text-align: center;
+    color: var(--primary);
+    opacity: .7;
+    animation: hintMove 2s infinite;
+    margin-top: -1.2em;
+  }
 }
 
 @keyframes hintMove {
