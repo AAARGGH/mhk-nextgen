@@ -35,16 +35,15 @@ h1 { font-size: 3em; margin-bottom: 0.7em; }
 h2 { font-size: 2em; margin-bottom: 0.5em; }
 
 a {
-  text-decoration: none;
+  text-decoration: underline;
   color: var(--primary);
   transition: color var(--transition), text-shadow var(--transition);
 }
 
 a:hover,
 a:focus {
-  text-decoration: none;
   color: var(--primary-dark);
-  text-shadow: 0 0 6px rgba(24,157,140,0.6);
+  text-shadow: 0 0 1px rgba(24,157,140,0.15);
 }
 
 header {
@@ -125,7 +124,7 @@ nav ul li a:hover,
 nav ul li a.active {
   color: var(--primary);
   border-bottom: 2px solid var(--primary);
-  text-shadow: 0 0 6px rgba(24,157,140,0.6);
+  text-shadow: 0 0 1px rgba(24,157,140,0.15);
 }
 
 main {
