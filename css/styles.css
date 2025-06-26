@@ -622,10 +622,11 @@ footer {
   h2 { font-size: 1.03em; }
   .field-card, .team-card, .project-card, .beirat-card { padding: 1.3em 0.5em; }
   .modal-card { padding: 2em 0.5em; margin: auto; }
-  .field-card, .project-card { min-width: 98vw; }
+  .field-card { min-width: 85vw; }
+  .project-card { min-width: 98vw; }
   .team-card, .beirat-card {
-    min-width: 85vw;
-    flex: 0 0 85vw;
+    min-width: 80vw;
+    flex: 0 0 80vw;
   }
   .hero .logo-img-main { width: 240px; }
   .hero h1 { font-size: 1.3em; }
