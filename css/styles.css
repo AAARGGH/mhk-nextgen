@@ -44,7 +44,7 @@ a:hover,
 a:focus {
   text-decoration: none;
   color: var(--primary-dark);
-  text-shadow: 0 0 6px rgba(24,157,140,0.6);
+  text-shadow: 0 0 1.5px rgba(24,157,140,0.15);
 }
 
 header {
@@ -125,7 +125,7 @@ nav ul li a:hover,
 nav ul li a.active {
   color: var(--primary);
   border-bottom: 2px solid var(--primary);
-  text-shadow: 0 0 6px rgba(24,157,140,0.6);
+  text-shadow: 0 0 1.5px rgba(24,157,140,0.15);
 }
 
 main {
