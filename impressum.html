@@ -6,15 +6,37 @@
   <title>Impressum - MHK Next Generation Stiftung</title>
   <link rel="icon" type="image/png" href="images/logo.png">
   <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:700,800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lora:400,700&display=swap" rel="stylesheet">
 </head>
 <body>
+<header>
+  <nav>
+    <a class="logo" href="index.html">
+      <img src="images/logo.png" alt="Logo" class="logo-img">
+    </a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menü öffnen" aria-expanded="false">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+    <ul>
+      <li><a href="index.html#about">Über uns</a></li>
+      <li><a href="index.html#fields">Förderfelder</a></li>
+      <li><a href="index.html#team">Team</a></li>
+      <li><a href="index.html#donate">Spenden</a></li>
+      <li><a href="index.html#help">Hilfe</a></li>
+      <li><a href="index.html#projects">Projekte</a></li>
+    </ul>
+  </nav>
+</header>
   <main>
-    <h1>Impressum</h1>
-    <p>Angaben gemäß § 5 TMG</p>
-    <p>MHK Next Generation Stiftung<br>
-       Musterweg 123<br>
-       12345 Musterstadt</p>
 
+  <section class="hero">
+    <img src="images/logo.png" alt="Logo MHK Next Generation Stiftung" class="logo-img-main">
+    <h1>Impressum</h1>
+  </section>
+  <section class="impressum-content">
     <h2>Vertreten durch:</h2>
     <p>Vorstandsvorsitzender Max Mustermann</p>
 
@@ -76,10 +98,12 @@
     <p><strong>Bitte ersetzen Sie alle Platzhalter wie Adressen, Kontaktdaten, Vorstandsangaben
        und Steuernummer durch Ihre tatsächlichen Angaben.</strong></p>
 
+  </section>
   </main>
   <footer>
     &copy; 2025 MHK Next Generation Stiftung &mdash; Gemeinsam helfen! |
     <a href="impressum.html">Impressum</a>
   </footer>
+  <script src="js/main.js"></script>
 </body>
 </html>
