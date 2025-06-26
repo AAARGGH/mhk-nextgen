@@ -32,3 +32,19 @@ document.getElementById('member-modal-close').onclick = function() {
 document.getElementById('member-modal-bg').onclick = function(e) {
   if (e.target === this) this.classList.remove('active');
 };
+
+// Mobile Navigation Toggle
+const nav = document.querySelector('nav');
+const navToggle = document.getElementById('nav-toggle');
+
+navToggle.addEventListener('click', () => {
+  nav.classList.toggle('open');
+  navToggle.setAttribute('aria-expanded', nav.classList.contains('open'));
+});
+
+document.querySelectorAll('nav ul a').forEach(link => {
+  link.addEventListener('click', () => {
+    nav.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  });
+});
