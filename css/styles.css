@@ -88,6 +88,24 @@ nav ul {
   padding: 0;
 }
 
+/* Hamburger Toggle */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: .5em;
+}
+
+.nav-toggle .bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px 0;
+  background: var(--text);
+  transition: background var(--transition);
+}
+
 nav ul li a {
   color: var(--text);
   text-decoration: none;
@@ -574,6 +592,23 @@ footer {
   .field-card, .team-card, .project-card, .beirat-card { min-width: 94vw; max-width: 97vw; }
 }
 
+@media (max-width: 750px) {
+  nav .nav-toggle { display: block; }
+  nav ul {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--bg);
+    flex-direction: column;
+    gap: 0;
+    padding: 0.5em 1em;
+    display: none;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.08);
+  }
+  nav.open ul { display: flex; }
+}
+
 @media (max-width: 570px) {
   h1 { font-size: 1.1em; }
   h2 { font-size: 1.03em; }
@@ -582,7 +617,6 @@ footer {
   .field-card, .team-card, .project-card, .beirat-card { min-width: 98vw; }
   .hero .logo-img-main { width: 160px; }
   .hero .hero-image { width: 96vw; }
-  nav ul { flex-wrap: wrap; gap: 1em; justify-content: center; }
   header { position: fixed; width: 100%; top: 0; left: 0; }
   body { padding-top: 90px; }
   .team-list, .beirat-list { justify-content: flex-start; }
