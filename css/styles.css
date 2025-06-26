@@ -627,7 +627,8 @@ footer {
     min-width: 85vw;
     flex: 0 0 85vw;
   }
-  .hero .logo-img-main { width: 160px; }
+  .hero .logo-img-main { width: 240px; }
+  .hero h1 { font-size: 1.3em; }
   .hero .hero-image { width: 96vw; }
   header { position: fixed; width: 100%; top: 0; left: 0; }
   body { padding-top: 90px; }
