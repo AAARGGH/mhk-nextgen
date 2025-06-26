@@ -48,3 +48,20 @@ document.querySelectorAll('nav ul a').forEach(link => {
     navToggle.setAttribute('aria-expanded', 'false');
   });
 });
+
+// Show scroll hints only when lists overflow
+function updateScrollHints() {
+  document.querySelectorAll('.team-section, .beirat-section').forEach(section => {
+    const list = section.querySelector('.team-list, .beirat-list');
+    const hint = section.querySelector('.scroll-hint');
+    if (!list || !hint) return;
+    if (list.scrollWidth > list.clientWidth) {
+      hint.style.display = '';
+    } else {
+      hint.style.display = 'none';
+    }
+  });
+}
+
+window.addEventListener('load', updateScrollHints);
+window.addEventListener('resize', updateScrollHints);
