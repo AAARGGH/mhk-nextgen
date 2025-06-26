@@ -5,6 +5,7 @@ html {
 :root {
   --primary: #22bfae;
   --primary-light: #eafaf8;
+  --primary-dark: #189d8c;
   --text: #222;
   --bg: #fff;
   --radius: 2em;
@@ -36,12 +37,14 @@ h2 { font-size: 2em; margin-bottom: 0.5em; }
 a {
   text-decoration: none;
   color: var(--primary);
-  transition: color var(--transition);
+  transition: color var(--transition), text-shadow var(--transition);
 }
 
 a:hover,
 a:focus {
-  text-decoration: underline;
+  text-decoration: none;
+  color: var(--primary-dark);
+  text-shadow: 0 0 6px rgba(24,157,140,0.6);
 }
 
 header {
@@ -122,6 +125,7 @@ nav ul li a:hover,
 nav ul li a.active {
   color: var(--primary);
   border-bottom: 2px solid var(--primary);
+  text-shadow: 0 0 6px rgba(24,157,140,0.6);
 }
 
 main {
@@ -499,7 +503,7 @@ section {
 
 .help-section .cta-btn:hover,
 .help-section .cta-btn:focus {
-  background: #189d8c;
+  background: var(--primary-dark);
   transform: translateY(-3px) scale(1.04);
   box-shadow: 0 12px 32px 0 rgba(34,191,174,0.16);
   text-decoration: none;
