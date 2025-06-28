@@ -643,7 +643,7 @@ footer {
   .hero .hero-image { width: 96vw; }
   header { position: fixed; width: 100%; top: 0; left: 0; }
   body { padding-top: 90px; }
-  .team-list, .beirat-list { justify-content: flex-start; }
+  .team-list, .beirat-list, .projects-list { justify-content: flex-start; }
   .scroll-hint {
     display: block;
     font-size: 2.3em;
