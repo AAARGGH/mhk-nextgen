@@ -33,6 +33,24 @@ document.getElementById('member-modal-bg').onclick = function(e) {
   if (e.target === this) this.classList.remove('active');
 };
 
+// Projekte Popup
+document.querySelectorAll('.project-card').forEach(card => {
+  card.addEventListener('click', () => {
+    document.getElementById('project-modal-title').textContent = card.getAttribute('data-title');
+    document.getElementById('project-modal-desc').textContent = card.getAttribute('data-desc');
+    const img = document.getElementById('project-modal-img');
+    img.src = card.getAttribute('data-img');
+    img.alt = card.getAttribute('data-title');
+    document.getElementById('project-modal-bg').classList.add('active');
+  });
+});
+document.getElementById('project-modal-close').onclick = function() {
+  document.getElementById('project-modal-bg').classList.remove('active');
+};
+document.getElementById('project-modal-bg').onclick = function(e) {
+  if (e.target === this) this.classList.remove('active');
+};
+
 // Mobile Navigation Toggle
 const nav = document.querySelector('nav');
 const navToggle = document.getElementById('nav-toggle');

@@ -184,23 +184,32 @@
     <section class="projects-section" id="projects">
       <h2>Bisherige Projekte (Beispiele)</h2>
       <div class="projects-list">
-        <div class="project-card">
-          <img src="https://unsplash.it/250/110?image=1050" alt="Projekt 1">
-          <div class="project-title">Kinderlachen fördern</div>
-          <div class="project-desc">Finanzierung von Freizeitangeboten für benachteiligte Kinder in der Region.</div>
+        <div class="project-card" data-title="Wiederaufbau Pfadfinderheim" data-img="images/projects/pfadfinderheim_brand.jpg" data-desc="Wir unterstützen den Wiederaufbau des abgebrannten Pfadfinderheims des Stammes Schwarzer Milan, das in einer Nacht aus ungeklärter Ursache niedergebrannt ist. Nun darf endlich neu gebaut werden, damit die Pfadfinder wieder ein Zuhause haben und weiterhin wertvolle Jugendarbeit leisten können. Mehr Informationen zum Brand und Wiederaufbau unter www.schwarzer-milan.org.">
+          <img src="images/projects/pfadfinderheim_brand.jpg" alt="Wiederaufbau Pfadfinderheim">
+          <div class="project-title">Wiederaufbau Pfadfinderheim</div>
+          <div class="project-desc">Unterstützung beim Wiederaufbau des abgebrannten Pfadfinderheims des Stammes Schwarzer Milan.</div>
         </div>
-        <div class="project-card">
-          <img src="https://unsplash.it/250/110?image=1020" alt="Projekt 2">
+        <div class="project-card" data-title="Neues Leben für Tiere" data-img="https://unsplash.it/250/110?image=1020" data-desc="Unterstützung eines regionalen Gnadenhofs für alte und kranke Tiere.">
+          <img src="https://unsplash.it/250/110?image=1020" alt="Neues Leben für Tiere">
           <div class="project-title">Neues Leben für Tiere</div>
           <div class="project-desc">Unterstützung eines regionalen Gnadenhofs für alte und kranke Tiere.</div>
         </div>
-        <div class="project-card">
-          <img src="https://unsplash.it/250/110?image=1020" alt="Projekt 3">
+        <div class="project-card" data-title="Nachbarschaftshilfe" data-img="https://unsplash.it/250/110?image=1020" data-desc="Direkte Hilfe für Familien nach einem Wohnungsbrand in Ingelheim.">
+          <img src="https://unsplash.it/250/110?image=1020" alt="Nachbarschaftshilfe">
           <div class="project-title">Nachbarschaftshilfe</div>
           <div class="project-desc">Direkte Hilfe für Familien nach einem Wohnungsbrand in Ingelheim.</div>
         </div>
       </div>
     </section>
+    <!-- Modal für Projekte -->
+    <div class="modal-bg" id="project-modal-bg" tabindex="-1" aria-modal="true" role="dialog">
+      <div class="modal-card" id="project-modal-card">
+        <button class="modal-close" id="project-modal-close" aria-label="Schließen">&times;</button>
+        <img id="project-modal-img" src="" alt="">
+        <div class="name" id="project-modal-title"></div>
+        <div class="bio" id="project-modal-desc"></div>
+      </div>
+    </div>
   </main>
   <footer>
     &copy; 2025 MHK Next Generation Stiftung &mdash; Gemeinsam helfen! |
