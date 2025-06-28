@@ -416,6 +416,16 @@ section {
   border: 6px solid var(--primary-light);
   box-shadow: 0 2px 10px 0 rgba(34,191,174,0.13);
 }
+#project-modal-img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  object-fit: cover;
+  margin-bottom: 1.3em;
+  background: var(--primary-light);
+  border: none;
+  box-shadow: 0 2px 10px 0 rgba(34,191,174,0.13);
+}
 
 .modal-close {
   position: absolute;
