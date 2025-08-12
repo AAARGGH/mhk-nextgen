@@ -141,7 +141,8 @@ section {
 /* Hero Section */
 .hero {
   text-align: center;
-  padding: 1em 0 2.5em 0;
+  margin-top: 0;
+  padding: 0 0 2.5em 0;
   position: relative;
 }
 
@@ -623,7 +624,7 @@ footer {
 @media (max-width: 950px) {
   main { padding: 0 1em 6em 1em; }
   nav { padding: 1.2em 1em 0.8em 1em; }
-  .hero { padding: 3.6em 0 2.8em 0; }
+  .hero { padding: 0 0 2.8em 0; }
   h1 { font-size: 2em; }
   .fields-list, .team-list, .projects-list, .beirat-list { gap: 1em; }
   .field-card, .team-card, .project-card, .beirat-card { min-width: 94vw; max-width: 97vw; }
@@ -669,7 +670,7 @@ footer {
   .hero h1 { font-size: 1.3em; }
   .hero .hero-image { width: 96vw; }
   header { position: fixed; width: 100%; top: 0; left: 0; }
-  body { padding-top: 90px; }
+  body { padding-top: 70px; }
   .team-list, .beirat-list, .projects-list { justify-content: flex-start; }
   .scroll-hint {
     display: block;
@@ -696,7 +697,7 @@ footer {
 }
 
 .team-card.wiggle {
-  animation: cardWiggle 0.5s ease-in-out 2;
+  animation: cardWiggle 1s ease-in-out;
 }
 
 
