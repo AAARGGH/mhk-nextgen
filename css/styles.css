@@ -697,7 +697,8 @@ footer {
   100% { transform: translateX(0); }
 }
 
-.team-card.wiggle {
+.team-card.wiggle,
+.beirat-card.wiggle {
   animation: cardWiggle 1s ease-in-out;
 }
 
