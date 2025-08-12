@@ -141,7 +141,9 @@ section {
 /* Hero Section */
 .hero {
   text-align: center;
-  padding: 0.5em 0 2.5em 0;
+  margin-top: 0;
+  padding: 0 0 2.5em 0;
+
   position: relative;
 }
 
@@ -623,7 +625,7 @@ footer {
 @media (max-width: 950px) {
   main { padding: 0 1em 6em 1em; }
   nav { padding: 1.2em 1em 0.8em 1em; }
-  .hero { padding: 3.6em 0 2.8em 0; }
+  .hero { padding: 0 0 2.8em 0; }
   h1 { font-size: 2em; }
   .fields-list, .team-list, .projects-list, .beirat-list { gap: 1em; }
   .field-card, .team-card, .project-card, .beirat-card { min-width: 94vw; max-width: 97vw; }
