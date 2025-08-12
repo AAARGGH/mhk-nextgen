@@ -6,7 +6,12 @@ function applyEmailLinks(root = document) {
     const user = el.getAttribute('data-user');
     if (!user) return;
     const email = `${user}${at}${domainParts.join('')}`;
-    el.setAttribute('href', `mailto:${email}`);
+    let href = `mailto:${email}`;
+    const subject = el.getAttribute('data-subject');
+    if (subject) {
+      href += `?subject=${encodeURIComponent(subject)}`;
+    }
+    el.setAttribute('href', href);
     if (el.classList.contains('show-email')) {
       el.textContent = email;
     }
