@@ -22,12 +22,16 @@ document.querySelectorAll('.field-card').forEach(card => {
     document.getElementById('field-modal-bg').classList.add('active');
   });
 });
-document.getElementById('field-modal-close').onclick = function() {
-  document.getElementById('field-modal-bg').classList.remove('active');
-};
-document.getElementById('field-modal-bg').onclick = function(e) {
-  if (e.target === this) this.classList.remove('active');
-};
+const fieldModalClose = document.getElementById('field-modal-close');
+const fieldModalBg = document.getElementById('field-modal-bg');
+if (fieldModalClose && fieldModalBg) {
+  fieldModalClose.onclick = function() {
+    fieldModalBg.classList.remove('active');
+  };
+  fieldModalBg.onclick = function(e) {
+    if (e.target === fieldModalBg) fieldModalBg.classList.remove('active');
+  };
+}
 
 // Team/Beirat Popup
 function showMember(card) {
@@ -50,12 +54,16 @@ function showMember(card) {
 document.querySelectorAll('.team-card, .beirat-card').forEach(card => {
   card.addEventListener('click', () => showMember(card));
 });
-document.getElementById('member-modal-close').onclick = function() {
-  document.getElementById('member-modal-bg').classList.remove('active');
-};
-document.getElementById('member-modal-bg').onclick = function(e) {
-  if (e.target === this) this.classList.remove('active');
-};
+const memberModalClose = document.getElementById('member-modal-close');
+const memberModalBg = document.getElementById('member-modal-bg');
+if (memberModalClose && memberModalBg) {
+  memberModalClose.onclick = function() {
+    memberModalBg.classList.remove('active');
+  };
+  memberModalBg.onclick = function(e) {
+    if (e.target === memberModalBg) memberModalBg.classList.remove('active');
+  };
+}
 
 // Projekte Popup
 document.querySelectorAll('.project-card').forEach(card => {
@@ -68,12 +76,16 @@ document.querySelectorAll('.project-card').forEach(card => {
     document.getElementById('project-modal-bg').classList.add('active');
   });
 });
-document.getElementById('project-modal-close').onclick = function() {
-  document.getElementById('project-modal-bg').classList.remove('active');
-};
-document.getElementById('project-modal-bg').onclick = function(e) {
-  if (e.target === this) this.classList.remove('active');
-};
+const projectModalClose = document.getElementById('project-modal-close');
+const projectModalBg = document.getElementById('project-modal-bg');
+if (projectModalClose && projectModalBg) {
+  projectModalClose.onclick = function() {
+    projectModalBg.classList.remove('active');
+  };
+  projectModalBg.onclick = function(e) {
+    if (e.target === projectModalBg) projectModalBg.classList.remove('active');
+  };
+}
 
 // Mobile Navigation Toggle
 const nav = document.querySelector('nav');
