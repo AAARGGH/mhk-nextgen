@@ -108,7 +108,7 @@ function updateScrollHints() {
 window.addEventListener('load', updateScrollHints);
 window.addEventListener('resize', updateScrollHints);
 
-// Wiggle team cards on first visit in mobile view
+// Wiggle team cards when the section enters view on mobile
 if (window.matchMedia('(max-width: 570px)').matches) {
   const teamSection = document.querySelector('.team-section');
   if (teamSection) {
@@ -119,7 +119,6 @@ if (window.matchMedia('(max-width: 570px)').matches) {
             card.classList.add('wiggle');
             card.addEventListener('animationend', () => card.classList.remove('wiggle'), { once: true });
           });
-          observer.disconnect();
         }
       });
     }, { threshold: 0.3 });
