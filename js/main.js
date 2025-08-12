@@ -108,5 +108,24 @@ function updateScrollHints() {
 window.addEventListener('load', updateScrollHints);
 window.addEventListener('resize', updateScrollHints);
 
+// Wiggle team cards on first visit in mobile view
+if (window.matchMedia('(max-width: 570px)').matches) {
+  const teamSection = document.querySelector('.team-section');
+  if (teamSection) {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          teamSection.querySelectorAll('.team-card').forEach(card => {
+            card.classList.add('wiggle');
+            card.addEventListener('animationend', () => card.classList.remove('wiggle'), { once: true });
+          });
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.3 });
+    observer.observe(teamSection);
+  }
+}
+
 // set up email links
 applyEmailLinks();
