@@ -1,3 +1,18 @@
+const at = String.fromCharCode(64);
+const domainParts = ['mhk', '-stiftung', '.de'];
+
+function applyEmailLinks(root = document) {
+  root.querySelectorAll('a.email').forEach(el => {
+    const user = el.getAttribute('data-user');
+    if (!user) return;
+    const email = `${user}${at}${domainParts.join('')}`;
+    el.setAttribute('href', `mailto:${email}`);
+    if (el.classList.contains('show-email')) {
+      el.textContent = email;
+    }
+  });
+}
+
 // Förderfelder Popup
 document.querySelectorAll('.field-card').forEach(card => {
   card.addEventListener('click', () => {
@@ -17,6 +32,15 @@ document.getElementById('field-modal-bg').onclick = function(e) {
 // Team/Beirat Popup
 function showMember(card) {
   document.getElementById('member-modal-name').textContent = card.getAttribute('data-name');
+  const emailContainer = document.getElementById('member-modal-email');
+  const user = card.getAttribute('data-user');
+  if (user) {
+    emailContainer.innerHTML = `<a class="email show-email" data-user="${user}"></a>`;
+    applyEmailLinks(emailContainer);
+    emailContainer.style.display = '';
+  } else {
+    emailContainer.style.display = 'none';
+  }
   document.getElementById('member-modal-role').textContent = card.getAttribute('data-role');
   document.getElementById('member-modal-bio').textContent = card.getAttribute('data-bio');
   document.getElementById('member-modal-img').src = card.getAttribute('data-img');
@@ -83,3 +107,6 @@ function updateScrollHints() {
 
 window.addEventListener('load', updateScrollHints);
 window.addEventListener('resize', updateScrollHints);
+
+// set up email links
+applyEmailLinks();
