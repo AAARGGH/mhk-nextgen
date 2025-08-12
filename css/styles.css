@@ -401,7 +401,7 @@ section {
 
 .modal-card .email {
   font-family:'Lora',serif;
-  font-size:1.07em;
+  font-size:0.95em;
   color:#444;
   margin-bottom:.6em;
 }
@@ -482,10 +482,22 @@ section {
   box-shadow: 0 3px 16px 0 rgba(34,191,174,0.09);
   padding: 2.3em 2.2em;
   min-width: 260px;
-  font-size: 1.13em;
+  font-size: 1.22em;
   margin: 0.8em 0;
   letter-spacing: 0.01em;
   font-family:'Lora',serif;
+}
+
+.konto-card img {
+  display: block;
+  margin: 1em auto 0 auto;
+  width: 160px;
+}
+
+.konto-card .bank-link {
+  display: block;
+  margin-top: 0.6em;
+  font-size: 0.9em;
 }
 
 /* Hilfe Section */
@@ -640,10 +652,18 @@ footer {
   .field-card, .team-card, .project-card, .beirat-card { padding: 1.3em 0.5em; }
   .modal-card { padding: 2em 0.5em; margin: auto; }
   .field-card { min-width: 85vw; }
-  .project-card { min-width: 98vw; }
+  .projects-list {
+    flex-direction: column;
+    overflow-x: visible;
+    scroll-snap-type: none;
+  }
+  .project-card {
+    width: 100%;
+    min-width: 100%;
+  }
   .team-card, .beirat-card {
-    min-width: 80vw;
-    flex: 0 0 80vw;
+    min-width: 75vw;
+    flex: 0 0 75vw;
   }
   .hero .logo-img-main { width: 240px; }
   .hero h1 { font-size: 1.3em; }
@@ -666,6 +686,17 @@ footer {
   0% { transform: translateX(0); }
   50% { transform: translateX(0.5em); }
   100% { transform: translateX(0); }
+}
+
+@keyframes cardWiggle {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-8px); }
+  75% { transform: translateX(8px); }
+  100% { transform: translateX(0); }
+}
+
+.team-card.wiggle {
+  animation: cardWiggle 0.5s ease-in-out 2;
 }
 
 
