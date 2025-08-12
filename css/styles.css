@@ -399,6 +399,13 @@ section {
   margin-bottom:.23em;
 }
 
+.modal-card .email {
+  font-family:'Lora',serif;
+  font-size:1.07em;
+  color:#444;
+  margin-bottom:.6em;
+}
+
 .modal-card .bio {
   font-family:'Lora',serif;
   font-size:1.07em;
