@@ -70,7 +70,8 @@ if (memberModalClose && memberModalBg) {
   };
 }
 
-// Projekte Popup
+// Projekte Popup (derzeit deaktiviert)
+/*
 document.querySelectorAll('.project-card').forEach(card => {
   card.addEventListener('click', () => {
     document.getElementById('project-modal-title').textContent = card.getAttribute('data-title');
@@ -91,6 +92,7 @@ if (projectModalClose && projectModalBg) {
     if (e.target === projectModalBg) projectModalBg.classList.remove('active');
   };
 }
+*/
 
 // Mobile Navigation Toggle
 const nav = document.querySelector('nav');
