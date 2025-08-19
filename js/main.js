@@ -1,5 +1,5 @@
 const at = String.fromCharCode(64);
-const domainParts = ['mhk', '-stiftung', '.de'];
+const domainParts = ['mhk', '-nextgeneration', '.de'];
 
 function applyEmailLinks(root = document) {
   root.querySelectorAll('a.email').forEach(el => {
