@@ -562,6 +562,34 @@ section {
   margin-top: 0;
 }
 
+.supporters-section {
+  text-align: center;
+  background: var(--primary-light);
+  padding: 3em 2em;
+  border-radius: var(--radius);
+}
+
+.supporters-section h2 {
+  margin-top: 0;
+}
+
+.supporters-section p {
+  max-width: 620px;
+  margin: 0 auto 1.5em auto;
+  color: #444;
+}
+
+.supporters-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8em;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+}
+
 .projects-list {
   display: flex;
   gap: 2em;
