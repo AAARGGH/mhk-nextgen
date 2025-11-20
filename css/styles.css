@@ -544,6 +544,38 @@ section {
   text-decoration: none;
 }
 
+.supporters-section {
+  text-align: center;
+  padding: 3em 2em;
+}
+
+.supporters-section h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2em;
+  font-weight: 800;
+  margin-bottom: 0.5em;
+  color: var(--text);
+  text-align: center;
+}
+
+.supporters-section p {
+  text-align: center;
+}
+
+.supporters-list {
+  background: #f7fafa;
+  border-radius: var(--radius);
+  box-shadow: 0 3px 16px 0 rgba(34,191,174,0.09);
+  padding: 2.3em 2.2em;
+  min-width: 260px;
+  font-family:'Lora',serif;
+  text-align: left;
+  display: inline-block;
+  list-style: inside;
+  line-height: 1.8;
+}
+
+
 /* Projekte Section */
 .projects-section {
   text-align: center;
@@ -560,34 +592,6 @@ section {
 
 .projects-section .year-note {
   margin-top: 0;
-}
-
-.supporters-section {
-  text-align: center;
-  background: var(--primary-light);
-  padding: 3em 2em;
-  border-radius: var(--radius);
-}
-
-.supporters-section h2 {
-  margin-top: 0;
-}
-
-.supporters-section p {
-  max-width: 620px;
-  margin: 0 auto 1.5em auto;
-  color: #444;
-}
-
-.supporters-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.8em;
-  font-weight: 600;
-  font-family: 'Montserrat', sans-serif;
 }
 
 .projects-list {
