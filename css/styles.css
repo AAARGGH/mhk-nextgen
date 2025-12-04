@@ -34,6 +34,31 @@ h1, h2, h3, h4, h5, h6 {
 h1 { font-size: 3em; margin-bottom: 0.7em; }
 h2 { font-size: 2em; margin-bottom: 0.5em; }
 
+/* Subtle divider above each main heading */
+section h1,
+section h2 {
+  position: relative;
+  padding-top: 1.35em;
+  margin-top: 0;
+}
+
+section h1::before,
+section h2::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -40%);
+  width: 120px;
+  height: 10px;
+  background: linear-gradient(90deg,
+    rgba(34, 191, 174, 0),
+    rgba(34, 191, 174, 0.55),
+    rgba(34, 191, 174, 0));
+  border-radius: 999px;
+  filter: drop-shadow(0 6px 12px rgba(34, 191, 174, 0.12));
+}
+
 a {
   text-decoration: underline;
   color: var(--primary);
