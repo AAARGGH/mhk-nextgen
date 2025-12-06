@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="480" viewBox="0 0 800 480" role="img" aria-label="Unterstützung für Kira">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22bfae"/>
+      <stop offset="100%" stop-color="#6bd5c7"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="480" fill="url(#grad)" rx="24"/>
+  <g fill="#ffffff" opacity="0.18">
+    <circle cx="140" cy="120" r="80"/>
+    <circle cx="620" cy="90" r="110"/>
+    <circle cx="480" cy="360" r="140"/>
+  </g>
+  <g fill="#ffffff">
+    <text x="60" y="190" font-family="Montserrat, Arial, sans-serif" font-weight="800" font-size="44">Gemeinsam für Kira</text>
+    <text x="60" y="240" font-family="Lora, Georgia, serif" font-size="26">Unterstützung für Umbauten, Mobilität</text>
+    <text x="60" y="274" font-family="Lora, Georgia, serif" font-size="26">und einen geschützten Alltag während</text>
+    <text x="60" y="308" font-family="Lora, Georgia, serif" font-size="26">Kiras Therapie.</text>
+  </g>
+</svg>
