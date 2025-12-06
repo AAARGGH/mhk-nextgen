@@ -621,11 +621,13 @@ section {
 
 .projects-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 320px));
   gap: 1.8em;
   overflow: visible;
   padding-bottom: 0.5em;
   align-items: stretch;
+  justify-content: center;
+  justify-items: center;
 }
 
 .project-card {
@@ -639,6 +641,8 @@ section {
   min-width: 0;
   display: flex;
   flex-direction: column;
+  width: 100%;
+  max-width: 320px;
 }
 
 .project-card:hover {
@@ -719,6 +723,8 @@ footer {
     grid-template-columns: 1fr;
     gap: 1.2em;
     overflow: visible;
+    justify-content: center;
+    justify-items: center;
   }
   .team-card, .beirat-card {
     min-width: 75vw;
@@ -729,7 +735,8 @@ footer {
   .hero .hero-image { width: 96vw; }
   header { position: fixed; width: 100%; top: 0; left: 0; }
   body { padding-top: 70px; }
-  .team-list, .beirat-list, .projects-list { justify-content: flex-start; }
+  .team-list, .beirat-list { justify-content: flex-start; }
+  .projects-list { justify-content: center; }
   .scroll-hint {
     display: block;
     font-size: 2.3em;
