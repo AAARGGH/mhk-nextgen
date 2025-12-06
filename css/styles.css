@@ -620,26 +620,29 @@ section {
 }
 
 .projects-list {
-  display: flex;
-  gap: 2em;
-  overflow-x: auto;
-  padding-bottom: 2em;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 320px));
+  gap: 1.8em;
+  overflow: visible;
+  padding-bottom: 0.5em;
+  align-items: stretch;
   justify-content: center;
+  justify-items: center;
 }
 
 .project-card {
   background: #fff;
   border-radius: var(--radius);
   box-shadow: 0 6px 32px 0 rgba(34,191,174,0.13);
-  min-width: 230px;
-  flex: 0 0 230px;
   padding: 1.7em 1.1em;
-  scroll-snap-align: start;
   transition: transform var(--transition), box-shadow var(--transition);
   margin-bottom: 1em;
   text-align: center;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 320px;
 }
 
 .project-card:hover {
@@ -689,7 +692,7 @@ footer {
   .hero { padding: 0 0 2.8em 0; }
   h1 { font-size: 2em; }
   .fields-list, .team-list, .projects-list, .beirat-list { gap: 1em; }
-  .field-card, .team-card, .project-card, .beirat-card { min-width: 94vw; max-width: 97vw; }
+  .field-card, .team-card, .beirat-card { min-width: 94vw; max-width: 97vw; }
 }
 
 @media (max-width: 750px) {
@@ -716,13 +719,12 @@ footer {
   .modal-card { padding: 2em 0.5em; margin: auto; }
   .field-card { min-width: 85vw; }
   .projects-list {
-    flex-direction: column;
-    overflow-x: visible;
-    scroll-snap-type: none;
-  }
-  .project-card {
-    width: 100%;
-    min-width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.2em;
+    overflow: visible;
+    justify-content: center;
+    justify-items: center;
   }
   .team-card, .beirat-card {
     min-width: 75vw;
@@ -733,7 +735,8 @@ footer {
   .hero .hero-image { width: 96vw; }
   header { position: fixed; width: 100%; top: 0; left: 0; }
   body { padding-top: 70px; }
-  .team-list, .beirat-list, .projects-list { justify-content: flex-start; }
+  .team-list, .beirat-list { justify-content: flex-start; }
+  .projects-list { justify-content: center; }
   .scroll-hint {
     display: block;
     font-size: 2.3em;
