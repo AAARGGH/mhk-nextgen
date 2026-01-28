@@ -205,6 +205,11 @@
           <div class="project-title">Integratives Förderzentrum Mensch und Pferd</div>
           <div class="project-desc">Förderung inklusiver pferdegestützter Therapie- und Sportangebote in Wackernheim.</div>
         </div>
+        <div class="project-card" data-title="TUS Gensingen – Volleyballnachwuchs" data-img="images/projects/TUS-gensingen-volleyball.jpeg" data-images="images/projects/TUS-gensingen-volleyball.jpeg" data-desc="Wir unterstützen den TUS Gensingen, damit rund 100 volleyballbegeisterte Kinder und Jugendliche auch bei ausgelagerten Trainingseinheiten in Sprendlingen und Bingen gut versorgt sind. Zusätzliche Hallenzeiten außerhalb Gensingen erfordern eigene Ball-Sets pro Standort; mit 10 weiteren Bällen à 64 Euro (gesamt 640 Euro) können die Trainerinnen und Trainer Material vor Ort bereithalten und Wege sparen.">
+          <img src="images/projects/TUS-gensingen-volleyball.jpeg" alt="TUS Gensingen Volleyballteam">
+          <div class="project-title">TUS Gensingen – Volleyballnachwuchs</div>
+          <div class="project-desc">10 zusätzliche Trainingsbälle für ausgelagerte Kinder- und Jugendtrainings in Sprendlingen und Bingen.</div>
+        </div>
         <div class="project-card" data-title="Unterstützung für Kira und ihre Familie" data-img="images/projects/kira-unterstuetzung.svg" data-desc="Wir entlasten die Familie der 13-jährigen Kira, die mit einem Myelodysplastischen Syndrom (MDS) lebt. Benötigt werden ein barrierearmer Badumbau, neue Fenster mit Rollladen für ein abdunkelbares Zimmer, zusätzliche Sitzplätze im Familienvan sowie Rückzugsmöglichkeiten, wenn die Therapie erschöpft. Weitere Informationen stehen auf der Spendenkampagnenseite.<br><br><a href='https://www.gofundme.com/f/schockdiagnose-mds-kira-13-kampft-ums-uberleben' target='_blank' rel='noopener'>Spendenaufruf auf GoFundMe</a>">
           <img src="images/projects/kira-unterstuetzung.svg" alt="Unterstützung für Kira und ihre Familie">
           <div class="project-title">Unterstützung für Kira und ihre Familie</div>
@@ -234,7 +239,11 @@
     <div class="modal-bg" id="project-modal-bg" tabindex="-1" aria-modal="true" role="dialog">
       <div class="modal-card" id="project-modal-card">
         <button class="modal-close" id="project-modal-close" aria-label="Schließen">&times;</button>
-        <img id="project-modal-img" src="" alt="">
+        <div class="project-carousel" id="project-carousel">
+          <button class="carousel-btn prev" id="project-carousel-prev" aria-label="Vorheriges Foto">&#10094;</button>
+          <img id="project-modal-img" src="" alt="">
+          <button class="carousel-btn next" id="project-carousel-next" aria-label="Nächstes Foto">&#10095;</button>
+        </div>
         <div class="name" id="project-modal-title"></div>
         <div class="bio" id="project-modal-desc"></div>
       </div>
