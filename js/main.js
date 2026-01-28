@@ -70,24 +70,127 @@ if (memberModalClose && memberModalBg) {
   };
 }
 
-document.querySelectorAll('.project-card').forEach(card => {
-  card.addEventListener('click', () => {
-    document.getElementById('project-modal-title').textContent = card.getAttribute('data-title');
-    document.getElementById('project-modal-desc').innerHTML = card.getAttribute('data-desc');
-    const img = document.getElementById('project-modal-img');
-    img.src = card.getAttribute('data-img');
-    img.alt = card.getAttribute('data-title');
-    document.getElementById('project-modal-bg').classList.add('active');
-  });
-});
+const projectModalTitle = document.getElementById('project-modal-title');
+const projectModalDesc = document.getElementById('project-modal-desc');
+const projectModalImg = document.getElementById('project-modal-img');
+const projectCarousel = document.getElementById('project-carousel');
+const projectCarouselPrev = document.getElementById('project-carousel-prev');
+const projectCarouselNext = document.getElementById('project-carousel-next');
 const projectModalClose = document.getElementById('project-modal-close');
 const projectModalBg = document.getElementById('project-modal-bg');
-if (projectModalClose && projectModalBg) {
-  projectModalClose.onclick = function() {
+const projectModalState = {
+  images: [],
+  currentIndex: 0,
+  intervalId: null
+};
+
+const parseProjectImages = (card) => {
+  const imagesAttr = card.getAttribute('data-images');
+  if (imagesAttr) {
+    return imagesAttr.split('|').map(item => item.trim()).filter(Boolean);
+  }
+  const fallback = card.getAttribute('data-img');
+  return fallback ? [fallback] : [];
+};
+
+const updateProjectCarousel = (index) => {
+  if (!projectModalImg || !projectModalState.images.length) return;
+  const total = projectModalState.images.length;
+  const nextIndex = ((index % total) + total) % total;
+  projectModalState.currentIndex = nextIndex;
+  projectModalImg.src = projectModalState.images[nextIndex];
+  const title = projectModalTitle ? projectModalTitle.textContent : 'Projekt';
+  projectModalImg.alt = `${title} (${nextIndex + 1}/${total})`;
+};
+
+const stopProjectCarousel = () => {
+  if (projectModalState.intervalId) {
+    clearInterval(projectModalState.intervalId);
+    projectModalState.intervalId = null;
+  }
+};
+
+const startProjectCarousel = () => {
+  stopProjectCarousel();
+  if (projectModalState.images.length > 1) {
+    projectModalState.intervalId = setInterval(() => {
+      updateProjectCarousel(projectModalState.currentIndex + 1);
+    }, 5000);
+  }
+};
+
+const closeProjectModal = () => {
+  stopProjectCarousel();
+  if (projectModalBg) {
     projectModalBg.classList.remove('active');
-  };
+  }
+};
+
+if (projectCarouselPrev) {
+  projectCarouselPrev.addEventListener('click', () => {
+    updateProjectCarousel(projectModalState.currentIndex - 1);
+    startProjectCarousel();
+  });
+}
+
+if (projectCarouselNext) {
+  projectCarouselNext.addEventListener('click', () => {
+    updateProjectCarousel(projectModalState.currentIndex + 1);
+    startProjectCarousel();
+  });
+}
+
+if (projectCarousel) {
+  let startX = 0;
+  let isPointerDown = false;
+  projectCarousel.addEventListener('pointerdown', (event) => {
+    if (event.target.closest('.carousel-btn')) return;
+    isPointerDown = true;
+    startX = event.clientX;
+  });
+  projectCarousel.addEventListener('pointerup', (event) => {
+    if (!isPointerDown) return;
+    const deltaX = event.clientX - startX;
+    if (Math.abs(deltaX) > 40) {
+      if (deltaX < 0) {
+        updateProjectCarousel(projectModalState.currentIndex + 1);
+      } else {
+        updateProjectCarousel(projectModalState.currentIndex - 1);
+      }
+      startProjectCarousel();
+    }
+    isPointerDown = false;
+  });
+  projectCarousel.addEventListener('pointercancel', () => {
+    isPointerDown = false;
+  });
+}
+
+document.querySelectorAll('.project-card').forEach(card => {
+  card.addEventListener('click', () => {
+    if (projectModalTitle) {
+      projectModalTitle.textContent = card.getAttribute('data-title');
+    }
+    if (projectModalDesc) {
+      projectModalDesc.innerHTML = card.getAttribute('data-desc');
+    }
+    projectModalState.images = parseProjectImages(card);
+    projectModalState.currentIndex = 0;
+    if (projectCarousel) {
+      projectCarousel.classList.toggle('single', projectModalState.images.length <= 1);
+    }
+    updateProjectCarousel(0);
+    if (projectModalBg) {
+      projectModalBg.classList.add('active');
+    }
+    startProjectCarousel();
+  });
+});
+
+if (projectModalClose && projectModalBg) {
+  projectModalClose.onclick = closeProjectModal;
   projectModalBg.onclick = function(e) {
-    if (e.target === projectModalBg) projectModalBg.classList.remove('active');
+    if (e.target === projectModalBg) closeProjectModal();
   };
 }
 
