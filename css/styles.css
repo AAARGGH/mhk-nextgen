@@ -730,6 +730,19 @@ footer {
   font-family: 'Lora', serif;
 }
 
+footer a {
+  color: #5d7388;
+}
+
+.footer-contact {
+  margin-bottom: 0.8em;
+  line-height: 1.7;
+}
+
+.footer-meta {
+  font-size: 0.98em;
+}
+
 /* Responsive Design */
 @media (max-width: 950px) {
   main { padding: 0 1em 6em 1em; }
