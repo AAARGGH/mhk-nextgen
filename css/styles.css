@@ -668,7 +668,15 @@ section {
 }
 
 .projects-section .year-note {
-  margin-top: 0;
+  margin: 0 0 1.2em;
+}
+
+.projects-section .year-note h3 {
+  margin-bottom: 0.2em;
+}
+
+.projects-section .year-note p {
+  margin: 0;
 }
 
 .projects-list {
@@ -677,9 +685,14 @@ section {
   gap: 1.8em;
   overflow: visible;
   padding-bottom: 0.5em;
+  margin: 0 0 3em;
   align-items: stretch;
   justify-content: center;
   justify-items: center;
+}
+
+.projects-section > .projects-list:last-of-type {
+  margin-bottom: 0;
 }
 
 .project-card {
