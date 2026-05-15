@@ -682,8 +682,7 @@ section {
 .projects-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 320px));
-  row-gap: 1.8em;
-  column-gap: 10px;
+  gap: 1.8em;
   overflow: visible;
   padding-bottom: 0.5em;
   margin: 0 0 3em;
@@ -712,7 +711,7 @@ section {
 }
 
 .project-card:hover {
-  transform: translateY(-7px);
+  transform: translateY(-7px) scale(1.045);
   box-shadow: 0 16px 38px 0 rgba(34,191,174,0.22);
 }
 
