@@ -682,7 +682,8 @@ section {
 .projects-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 320px));
-  gap: 1.8em;
+  row-gap: 1.8em;
+  column-gap: 10px;
   overflow: visible;
   padding-bottom: 0.5em;
   margin: 0 0 3em;
@@ -711,7 +712,7 @@ section {
 }
 
 .project-card:hover {
-  transform: translateY(-7px) scale(1.045);
+  transform: translateY(-7px);
   box-shadow: 0 16px 38px 0 rgba(34,191,174,0.22);
 }
 
@@ -769,7 +770,8 @@ footer a {
   nav { padding: 1.2em 1em 0.8em 1em; }
   .hero { padding: 0 0 2.8em 0; }
   h1 { font-size: 2em; }
-  .fields-list, .team-list, .projects-list, .beirat-list { gap: 1em; }
+  .fields-list, .team-list, .beirat-list { gap: 1em; }
+  .projects-list { row-gap: 1em; column-gap: 8px; }
   .field-card, .team-card, .beirat-card { min-width: 94vw; max-width: 97vw; }
 }
 
