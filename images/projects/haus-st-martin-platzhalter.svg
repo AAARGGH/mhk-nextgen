@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="480" viewBox="0 0 800 480" role="img" aria-labelledby="title desc">
+  <title id="title">Unterstützung für das Haus St. Martin</title>
+  <desc id="desc">Illustration eines Hauses mit Menschen und einem Herz als Platzhalter bis Projektfotos vorliegen.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#22bfae"/>
+      <stop offset="1" stop-color="#189d8c"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="480" rx="24" fill="url(#background)"/>
+  <circle cx="105" cy="92" r="74" fill="#fff" opacity=".1"/>
+  <circle cx="718" cy="380" r="120" fill="#fff" opacity=".1"/>
+  <g transform="translate(76 85)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M8 126 126 30l118 96v151H8Z" stroke-width="18"/>
+    <path d="M87 277v-89h78v89M55 148h28v31H55m114-31h28v31h-28" stroke-width="14"/>
+    <path d="M126 72c-25-29-65 8 0 54 65-46 25-83 0-54Z" fill="#fff" stroke-width="8"/>
+  </g>
+  <g fill="#fff" font-family="Montserrat, Arial, sans-serif">
+    <text x="365" y="174" font-size="35" font-weight="800">Gemeinsam Alltag</text>
+    <text x="365" y="216" font-size="35" font-weight="800">möglich machen</text>
+    <text x="365" y="270" font-family="Lora, Georgia, serif" font-size="24">Unterstützung für die Wohngruppe</text>
+    <text x="365" y="306" font-family="Lora, Georgia, serif" font-size="24">des Hauses St. Martin in Ingelheim</text>
+  </g>
+</svg>
