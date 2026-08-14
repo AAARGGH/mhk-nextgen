@@ -696,6 +696,7 @@ section {
 }
 
 .project-card {
+  box-sizing: border-box;
   background: #fff;
   border-radius: var(--radius);
   box-shadow: 0 6px 32px 0 rgba(34,191,174,0.13);
@@ -770,7 +771,7 @@ footer a {
   .hero { padding: 0 0 2.8em 0; }
   h1 { font-size: 2em; }
   .fields-list, .team-list, .beirat-list { gap: 1em; }
-  .projects-list { row-gap: 1em; column-gap: 8px; }
+  .projects-list { gap: 1.2em; }
   .field-card, .team-card, .beirat-card { min-width: 94vw; max-width: 97vw; }
 }
 
