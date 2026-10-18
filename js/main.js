@@ -84,6 +84,87 @@ const projectModalState = {
   intervalId: null
 };
 
+// Projects are kept in a small JSON file so that the protected editor can
+// update them without having to rewrite this page. The cards in index.html are
+// retained as a no-JavaScript/offline fallback.
+const projectsContent = document.getElementById('projects-content');
+
+const projectTextToHtml = (text, linkUrl, linkLabel) => {
+  const wrapper = document.createElement('div');
+  String(text || '').split(/\n{2,}/).forEach((paragraph, index) => {
+    if (index) wrapper.append(document.createElement('br'), document.createElement('br'));
+    paragraph.split('\n').forEach((line, lineIndex) => {
+      if (lineIndex) wrapper.append(document.createElement('br'));
+      wrapper.append(document.createTextNode(line));
+    });
+  });
+  if (linkUrl) {
+    wrapper.append(document.createElement('br'), document.createElement('br'));
+    const link = document.createElement('a');
+    link.href = linkUrl;
+    link.target = '_blank';
+    link.rel = 'noopener';
+    link.textContent = linkLabel || linkUrl;
+    wrapper.append(link);
+  }
+  return wrapper.innerHTML;
+};
+
+const renderProjects = (projects) => {
+  if (!projectsContent || !Array.isArray(projects)) return;
+  const published = projects.filter(project => project.published !== false);
+  const years = [...new Set(published.map(project => Number(project.year)))].sort((a, b) => b - a);
+  const fragment = document.createDocumentFragment();
+
+  years.forEach(year => {
+    const heading = document.createElement('section');
+    heading.className = 'year-note';
+    heading.id = `year-${year}`;
+    const title = document.createElement('h3');
+    title.textContent = String(year);
+    heading.append(title);
+    fragment.append(heading);
+
+    const list = document.createElement('div');
+    list.className = 'projects-list';
+    published.filter(project => Number(project.year) === year).forEach(project => {
+      const card = document.createElement('div');
+      card.className = 'project-card';
+      card.tabIndex = 0;
+      card.setAttribute('role', 'button');
+      card.dataset.title = project.title;
+      card.dataset.desc = projectTextToHtml(project.text, project.linkUrl, project.linkLabel);
+      const images = Array.isArray(project.images) ? project.images.filter(Boolean) : [];
+      card.dataset.images = images.join('|');
+      card.dataset.img = images[0] || project.thumbnail || '';
+
+      const image = document.createElement('img');
+      image.src = project.thumbnail || images[0] || '';
+      image.alt = project.alt || project.title;
+      image.loading = 'lazy';
+      const cardTitle = document.createElement('div');
+      cardTitle.className = 'project-title';
+      cardTitle.textContent = project.title;
+      const teaser = document.createElement('div');
+      teaser.className = 'project-desc';
+      teaser.textContent = project.teaser;
+      card.append(image, cardTitle, teaser);
+      list.append(card);
+    });
+    fragment.append(list);
+  });
+
+  projectsContent.replaceChildren(fragment);
+};
+
+fetch('data/projects.json', { cache: 'no-store' })
+  .then(response => {
+    if (!response.ok) throw new Error('Projekte konnten nicht geladen werden.');
+    return response.json();
+  })
+  .then(renderProjects)
+  .catch(error => console.warn(error.message));
+
 const parseProjectImages = (card) => {
   const imagesAttr = card.getAttribute('data-images');
   if (imagesAttr) {
@@ -166,8 +247,7 @@ if (projectCarousel) {
   });
 }
 
-document.querySelectorAll('.project-card').forEach(card => {
-  card.addEventListener('click', () => {
+const openProject = (card) => {
     if (projectModalTitle) {
       projectModalTitle.textContent = card.getAttribute('data-title');
     }
@@ -184,7 +264,19 @@ document.querySelectorAll('.project-card').forEach(card => {
       projectModalBg.classList.add('active');
     }
     startProjectCarousel();
-  });
+};
+
+document.getElementById('projects')?.addEventListener('click', event => {
+  const card = event.target.closest('.project-card');
+  if (card) openProject(card);
+});
+
+document.getElementById('projects')?.addEventListener('keydown', event => {
+  const card = event.target.closest('.project-card');
+  if (card && (event.key === 'Enter' || event.key === ' ')) {
+    event.preventDefault();
+    openProject(card);
+  }
 });
 
 if (projectModalClose && projectModalBg) {
