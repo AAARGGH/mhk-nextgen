@@ -311,9 +311,9 @@ function renderSupporters() {
     const row = document.createElement('div');
     row.className = 'supporter-row';
     const label = document.createElement('label');
-    label.textContent = `Name ${index + 1}`;
     const input = document.createElement('input');
     input.type = 'text';
+    input.setAttribute('aria-label', `Name des Unterstützers ${index + 1}`);
     input.required = true;
     input.maxLength = 200;
     input.value = name;
