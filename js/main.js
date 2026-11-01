@@ -142,13 +142,23 @@ const renderProjects = (projects) => {
       image.src = project.thumbnail || images[0] || '';
       image.alt = project.alt || project.title;
       image.loading = 'lazy';
+      const crop = project.thumbnailCrop || {};
+      const bounded = (value, fallback, min, max) => Number.isFinite(value) ? Math.max(min, Math.min(max, value)) : fallback;
+      const x = bounded(crop.x, 50, 0, 100);
+      const y = bounded(crop.y, 50, 0, 100);
+      image.style.objectPosition = `${x}% ${y}%`;
+      image.style.transformOrigin = `${x}% ${y}%`;
+      image.style.transform = `scale(${bounded(crop.zoom, 1, 1, 4)})`;
+      const frame = document.createElement('div');
+      frame.className = 'project-thumbnail';
+      frame.append(image);
       const cardTitle = document.createElement('div');
       cardTitle.className = 'project-title';
       cardTitle.textContent = project.title;
       const teaser = document.createElement('div');
       teaser.className = 'project-desc';
       teaser.textContent = project.teaser;
-      card.append(image, cardTitle, teaser);
+      card.append(frame, cardTitle, teaser);
       list.append(card);
     });
     fragment.append(list);
@@ -342,3 +352,22 @@ if (window.matchMedia('(max-width: 570px)').matches) {
 
 // set up email links
 applyEmailLinks();
+
+
+// Keep the existing HTML list as a fallback if the data cannot be loaded.
+fetch('data/supporters.json', {cache: 'no-store'})
+  .then(response => {
+    if (!response.ok) throw new Error('Unterstützer konnten nicht geladen werden.');
+    return response.json();
+  })
+  .then(names => {
+    if (!Array.isArray(names) || !names.every(name => typeof name === 'string')) throw new Error('Ungültige Unterstützerliste.');
+    const list = document.querySelector('#supporters .supporters-list');
+    if (!list) return;
+    list.replaceChildren(...names.map(name => {
+      const item = document.createElement('li');
+      item.textContent = name;
+      return item;
+    }));
+  })
+  .catch(error => console.warn(error.message));

@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 
+const SUPPORTERS_FILE = __DIR__ . '/../data/supporters.json';
 const DATA_FILE = __DIR__ . '/../data/projects.json';
 const UPLOAD_DIR = __DIR__ . '/../images/projects/uploads';
 const MAX_UPLOAD_BYTES = 8 * 1024 * 1024;
@@ -112,7 +113,35 @@ if ($action === 'projects' && $_SERVER['REQUEST_METHOD'] === 'GET') {
     respond(['projects' => readProjects(), 'csrf' => $_SESSION['csrf']]);
 }
 
+if ($action === 'supporters' && $_SERVER['REQUEST_METHOD'] === 'GET') {
+    $supporters = json_decode((string) @file_get_contents(SUPPORTERS_FILE), true);
+    if (!is_array($supporters) || !array_is_list($supporters)) respond(['error' => 'Die Unterstützerliste konnte nicht gelesen werden.'], 500);
+    respond(['supporters' => $supporters]);
+}
+
 requireCsrf();
+
+if ($action === 'save-supporters' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    $body = json_decode((string) file_get_contents('php://input'));
+    $names = $body instanceof stdClass ? ($body->supporters ?? null) : null;
+    if (!is_array($names) || !array_is_list($names) || count($names) > 500) {
+        respond(['error' => 'Bitte eine Liste mit höchstens 500 Namen angeben.'], 422);
+    }
+    $supporters = [];
+    foreach ($names as $name) {
+        if (!is_string($name) || trim($name) === '' || mb_strlen(trim($name)) > 200) {
+            respond(['error' => 'Jeder Eintrag braucht einen Namen mit höchstens 200 Zeichen.'], 422);
+        }
+        $supporters[] = trim($name);
+    }
+    $json = json_encode($supporters, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "\n";
+    $temporary = tempnam(dirname(SUPPORTERS_FILE), '.supporters-');
+    if ($temporary === false || @file_put_contents($temporary, $json, LOCK_EX) === false || !@chmod($temporary, 0644) || !@rename($temporary, SUPPORTERS_FILE)) {
+        if ($temporary !== false) @unlink($temporary);
+        respond(['error' => 'Speichern fehlgeschlagen. Bitte Schreibrechte für data/ prüfen.'], 500);
+    }
+    respond(['ok' => true, 'supporters' => $supporters]);
+}
 
 if ($action === 'save' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     $body = json_decode((string) file_get_contents('php://input'), true);
@@ -129,6 +158,11 @@ if ($action === 'save' && $_SERVER['REQUEST_METHOD'] === 'POST') {
         ), fn ($image) => preg_match('~^(?:images/projects/|https?://)~', $image)));
         $linkUrl = cleanString($project['linkUrl'] ?? '', 500);
         if ($linkUrl !== '' && !filter_var($linkUrl, FILTER_VALIDATE_URL)) respond(['error' => "Der Link bei „{$title}“ ist ungültig."], 422);
+        $crop = is_array($project['thumbnailCrop'] ?? null) ? $project['thumbnailCrop'] : [];
+        $cropNumber = static function (mixed $value, float $default, float $min, float $max): float {
+            return is_numeric($value) && is_finite((float) $value)
+                ? max($min, min($max, (float) $value)) : $default;
+        };
         $projects[] = [
             'id' => preg_replace('/[^a-zA-Z0-9_-]/', '', cleanString($project['id'] ?? '', 100)) ?: 'project-' . bin2hex(random_bytes(6)),
             'year' => $year,
@@ -137,6 +171,11 @@ if ($action === 'save' && $_SERVER['REQUEST_METHOD'] === 'POST') {
             'text' => cleanString($project['text'] ?? '', 15000),
             'images' => $images,
             'thumbnail' => cleanString($project['thumbnail'] ?? ($images[0] ?? ''), 500),
+            'thumbnailCrop' => [
+                'x' => $cropNumber($crop['x'] ?? null, 50, 0, 100),
+                'y' => $cropNumber($crop['y'] ?? null, 50, 0, 100),
+                'zoom' => $cropNumber($crop['zoom'] ?? null, 1, 1, 4),
+            ],
             'alt' => cleanString($project['alt'] ?? '', 300),
             'linkUrl' => $linkUrl,
             'linkLabel' => cleanString($project['linkLabel'] ?? '', 200),
