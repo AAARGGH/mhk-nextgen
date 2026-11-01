@@ -9,6 +9,9 @@ let projects = [];
 let selectedId = null;
 let csrf = '';
 let dirty = false;
+let supportersDirty = false;
+let supportersLoaded = false;
+let supporters = [];
 
 const fields = {
   title: $('#title'), year: $('#year'), teaser: $('#teaser'), text: $('#text'),
@@ -17,7 +20,7 @@ const fields = {
 
 function setDirty(value) {
   dirty = value;
-  $('#save-state').textContent = value ? 'Nicht gespeicherte Änderungen' : 'Alles gespeichert';
+  $('#save-state').textContent = (value || supportersDirty) ? 'Nicht gespeicherte Änderungen' : 'Alles gespeichert';
 }
 
 function toast(message) {
@@ -63,6 +66,32 @@ function renderList() {
   });
 }
 
+const imageUrl = path => /^https?:\/\//i.test(path) ? path : `../${path}`;
+const cropFor = project => project.thumbnailCrop || {x: 50, y: 50, zoom: 1};
+
+function updateCover() {
+  const project = currentProject();
+  const path = project?.thumbnail || project?.images?.[0];
+  $('#cover-editor').hidden = !path;
+  if (!path) return;
+  const crop = cropFor(project);
+  const image = $('#cover-image');
+  const url = imageUrl(path);
+  if (image.getAttribute('src') !== url) image.src = url;
+  image.style.objectPosition = `${crop.x}% ${crop.y}%`;
+  image.style.transformOrigin = `${crop.x}% ${crop.y}%`;
+  image.style.transform = `scale(${crop.zoom})`;
+  ['x', 'y', 'zoom'].forEach(key => $('#cover-' + key).value = crop[key]);
+}
+
+function setCoverCrop(crop) {
+  const project = currentProject();
+  if (!project) return;
+  project.thumbnailCrop = crop;
+  setDirty(true);
+  updateCover();
+}
+
 function renderImages() {
   const project = currentProject();
   const container = $('#image-list');
@@ -71,23 +100,77 @@ function renderImages() {
     const item = document.createElement('div');
     item.className = 'image-item';
     const image = document.createElement('img');
-    image.src = `../${path}`;
-    image.alt = '';
-    const remove = document.createElement('button');
-    remove.type = 'button';
-    remove.title = 'Bild aus Projekt entfernen';
-    remove.setAttribute('aria-label', `Bild ${index + 1} entfernen`);
-    remove.textContent = '×';
-    remove.addEventListener('click', () => {
-      project.images.splice(index, 1);
-      if (project.thumbnail === path) project.thumbnail = project.images[0] || '';
+    image.src = imageUrl(path);
+    image.alt = `Bild ${index + 1}`;
+    const actions = document.createElement('div');
+    actions.className = 'image-actions';
+    const button = (label, title, handler, disabled = false) => {
+      const element = document.createElement('button');
+      element.type = 'button';
+      element.textContent = label;
+      element.title = title;
+      element.setAttribute('aria-label', title);
+      element.disabled = disabled;
+      element.addEventListener('click', handler);
+      actions.append(element);
+      return element;
+    };
+    [-1, 1].forEach(direction => button(direction < 0 ? '←' : '→',
+      `Bild ${index + 1} nach ${direction < 0 ? 'vorne' : 'hinten'} verschieben`, () => {
+        const target = index + direction;
+        [project.images[index], project.images[target]] = [project.images[target], project.images[index]];
+        setDirty(true);
+        renderImages();
+        const moved = container.children[target];
+        moved.querySelectorAll('button')[direction < 0 ? 1 : 0].focus();
+      }, index + direction < 0 || index + direction >= project.images.length));
+    const isCover = (project.thumbnail || project.images[0]) === path;
+    const cover = button(isCover ? 'Titelbild ✓' : 'Als Titelbild', `Bild ${index + 1} als Titelbild`, () => {
+      project.thumbnail = path;
+      delete project.thumbnailCrop;
       setDirty(true);
       renderImages();
     });
-    item.append(image, remove);
+    cover.setAttribute('aria-pressed', String(isCover));
+    button('Entfernen', `Bild ${index + 1} entfernen`, () => {
+      project.images.splice(index, 1);
+      if (project.thumbnail === path) {
+        project.thumbnail = project.images[0] || '';
+        delete project.thumbnailCrop;
+      }
+      setDirty(true);
+      renderImages();
+    });
+    item.append(image, actions);
     container.append(item);
   });
+  updateCover();
 }
+
+['x', 'y', 'zoom'].forEach(key => $('#cover-' + key).addEventListener('input', event => {
+  setCoverCrop({...cropFor(currentProject()), [key]: Number(event.target.value)});
+}));
+$('#cover-reset').addEventListener('click', () => setCoverCrop({x: 50, y: 50, zoom: 1}));
+let coverDrag = null;
+$('#cover-preview').addEventListener('pointerdown', event => {
+  if (!event.isPrimary || event.button !== 0) return;
+  const image = $('#cover-image');
+  if (!image.naturalWidth) return;
+  const box = event.currentTarget.getBoundingClientRect();
+  const crop = cropFor(currentProject());
+  const scale = Math.max(box.width / image.naturalWidth, box.height / image.naturalHeight) * crop.zoom;
+  coverDrag = {pointer: event.pointerId, startX: event.clientX, startY: event.clientY, crop: {...crop},
+    overflowX: image.naturalWidth * scale - box.width, overflowY: image.naturalHeight * scale - box.height};
+  event.currentTarget.setPointerCapture(event.pointerId);
+});
+$('#cover-preview').addEventListener('pointermove', event => {
+  if (!coverDrag || coverDrag.pointer !== event.pointerId) return;
+  const d = coverDrag;
+  const position = (start, delta, overflow) => overflow > 0.01 ? Math.max(0, Math.min(100, start - delta / overflow * 100)) : start;
+  setCoverCrop({...d.crop, x: position(d.crop.x, event.clientX - d.startX, d.overflowX),
+    y: position(d.crop.y, event.clientY - d.startY, d.overflowY)});
+});
+['pointerup', 'pointercancel', 'lostpointercapture'].forEach(type => $('#cover-preview').addEventListener(type, () => coverDrag = null));
 
 function selectProject(id) {
   if (dirty && selectedId && !confirm('Nicht gespeicherte Änderungen verwerfen?')) return;
@@ -156,6 +239,7 @@ $('#editor').addEventListener('submit', async event => {
     projects = data.projects;
     setDirty(false);
     renderList();
+    renderImages();
     toast('Änderungen wurden veröffentlicht.');
   } catch (error) {
     $('#editor-message').textContent = error.message;
@@ -202,13 +286,107 @@ $('#image-upload').addEventListener('change', async event => {
 
 $('#search').addEventListener('input', renderList);
 $('#logout').addEventListener('click', async () => {
-  if (dirty && !confirm('Nicht gespeicherte Änderungen verwerfen und abmelden?')) return;
+  if ((dirty || supportersDirty) && !confirm('Nicht gespeicherte Änderungen verwerfen und abmelden?')) return;
   await api('logout', {method: 'POST', headers: {'X-CSRF-Token': csrf}});
   location.reload();
 });
-window.addEventListener('beforeunload', event => { if (dirty) { event.preventDefault(); event.returnValue = ''; } });
+window.addEventListener('beforeunload', event => { if (dirty || supportersDirty) { event.preventDefault(); event.returnValue = ''; } });
 
 api('status').then(data => {
   if (data.authenticated) { csrf = data.csrf; loadProjects(); }
   else if (!data.configured) $('#login-message').textContent = 'Vor der ersten Anmeldung muss ein Passwort auf dem Server eingerichtet werden.';
 }).catch(error => $('#login-message').textContent = error.message);
+
+
+function markSupportersDirty() {
+  supportersDirty = true;
+  setDirty(dirty);
+}
+
+function renderSupporters() {
+  const container = $('#supporter-list');
+  container.replaceChildren();
+  $('#supporters-empty').hidden = supporters.length > 0;
+  supporters.forEach((name, index) => {
+    const row = document.createElement('div');
+    row.className = 'supporter-row';
+    const label = document.createElement('label');
+    label.textContent = `Name ${index + 1}`;
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.required = true;
+    input.maxLength = 200;
+    input.value = name;
+    input.addEventListener('input', () => {
+      supporters[index] = input.value;
+      markSupportersDirty();
+    });
+    label.append(input);
+    const remove = document.createElement('button');
+    remove.type = 'button';
+    remove.className = 'button danger';
+    remove.textContent = 'Entfernen';
+    remove.setAttribute('aria-label', `Name ${index + 1} entfernen`);
+    remove.addEventListener('click', () => {
+      supporters.splice(index, 1);
+      markSupportersDirty();
+      renderSupporters();
+      const inputs = container.querySelectorAll('input');
+      (inputs[Math.min(index, inputs.length - 1)] || $('#add-supporter')).focus();
+    });
+    row.append(label, remove);
+    container.append(row);
+  });
+}
+
+async function showSection(section) {
+  ['projects', 'supporters'].forEach(name => {
+    const active = name === section;
+    $('#' + name + '-section').hidden = !active;
+    const button = $('#show-' + name);
+    button.className = `button ${active ? 'primary' : 'ghost'}`;
+    if (active) button.setAttribute('aria-current', 'page');
+    else button.removeAttribute('aria-current');
+  });
+  if (section !== 'supporters' || supportersLoaded) return;
+  $('#supporters-message').textContent = 'Unterstützer werden geladen …';
+  try {
+    const data = await api('supporters');
+    supporters = data.supporters;
+    supportersLoaded = true;
+    renderSupporters();
+    $('#supporters-fields').disabled = false;
+    $('#supporters-message').textContent = '';
+  } catch (error) {
+    $('#supporters-message').textContent = error.message + ' Zum erneuten Laden noch einmal auf Unterstützer klicken.';
+  }
+}
+$('#show-projects').addEventListener('click', () => showSection('projects'));
+$('#show-supporters').addEventListener('click', () => showSection('supporters'));
+$('#add-supporter').addEventListener('click', () => {
+  if (supporters.length >= 500) {
+    $('#supporters-message').textContent = 'Es sind höchstens 500 Namen möglich.';
+    return;
+  }
+  supporters.push('');
+  markSupportersDirty();
+  renderSupporters();
+  $('#supporter-list').lastElementChild.querySelector('input').focus();
+});
+$('#supporters-form').addEventListener('submit', async event => {
+  event.preventDefault();
+  $('#supporters-message').textContent = '';
+  $('#supporters-fields').disabled = true;
+  try {
+    const data = await api('save-supporters', {method: 'POST', headers: {'Content-Type': 'application/json', 'X-CSRF-Token': csrf}, body: JSON.stringify({supporters})});
+    supporters = data.supporters;
+    supportersDirty = false;
+    setDirty(dirty);
+    renderSupporters();
+    toast('Unterstützer wurden gespeichert.');
+  } catch (error) {
+    $('#supporters-message').textContent = error.message;
+  } finally {
+    $('#supporters-fields').disabled = false;
+  }
+});
